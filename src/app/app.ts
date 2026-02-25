@@ -14,13 +14,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class App {
 
-  // 1. El almacén: Lo convertimos a Signal para que Angular detecte cambios
-  arrayNews = signal<INoticia[]>(NOTICIAS); 
-  
-  // 2. La red que atrapa el dato:
-  recibirNuevaNoticia(noticiaQueLlega: INoticia) {
-    // Así se añade un elemento a un Signal array (hace la misma función que el push)
-    this.arrayNews.update(lista => [...lista, noticiaQueLlega]);
-  }
+// ¡YA NO HACE NADA!
+// El App Component solo sirve para mostrar el HTML estructural.
+// Los hijos (Form y News) ya se apañan solos con el Servicio.
 
 }

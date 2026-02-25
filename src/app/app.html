@@ -5,11 +5,13 @@
 <main>
     <div class="secciones">
         <section class="form">
-            <app-form (noticiaEmitida) = recibirNuevaNoticia($event)></app-form>  <!-- Esto es el output -->
+            <!--<app-form (noticiaEmitida) = recibirNuevaNoticia($event)></app-form>   -->
+             <app-form></app-form>
         </section>
 
         <section class="news">
-            <app-news [misNoticias]="arrayNews()"></app-news>  <!-- Esto es un input -->
+            <!-- <app-news [misNoticias]="arrayNews()"></app-news>    -->
+             <app-news></app-news>
         </section>
 
     </div>
