@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { INoticia } from '../../interfaces/inoticia';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core'; 
+import { BlogService } from '../../services/blog'; // Importamos el servicio
+import { inject } from '@angular/core'; // Importamos inject
 
 @Component({
   selector: 'app-form',
@@ -11,18 +13,18 @@ import { Output, EventEmitter } from '@angular/core';
 })
 
 export class Form {
+  // --- INYECCIÓN DE DEPENDENCIAS ---
+  // Inyectamos el servicio para poder usarlo.
+  private blogService = inject(BlogService);
+
   // Variables para conectar con el formulario (ngModels)
   inputTitle: string = "";
   inputImage: string = "";
   inputTexto: string = "";
   inputDate: string = "";
 
-  // Output  para subir el dato. 
-  @Output() noticiaEmitida = new EventEmitter <INoticia>();  
-  
-
-  
-
+  // YA NO NECESITAMOS @Output NI EventEmitter. ¡FUERA! 🗑️
+  // @Output() noticiaEmitida = new EventEmitter <INoticia>();  
 
   guardarNoticia(event: Event){
 
@@ -40,8 +42,11 @@ export class Form {
         "date": this.inputDate
       }; 
 
-      // Emitimos la tarea al Padre
-      this.noticiaEmitida.emit(nueva); 
+      // --- CAMBIO CLAVE ---
+      // Antes: this.noticiaEmitida.emit(nueva); 
+      // Ahora: Llamamos al método del servicio directamente.
+      this.blogService.agregarNoticia(nueva);
+
 
       
       // Reseteamos las variables para limpiar el formulario y dejarlo listo para la siguiente noticia
