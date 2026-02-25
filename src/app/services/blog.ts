@@ -8,7 +8,7 @@ import { NOTICIAS } from '../db/noticias.db';
 export class BlogService {
   private misNoticias: INoticia[] = NOTICIAS; 
 
-  getAll() :INoticia[] {
+  getNoticias() :INoticia[] {
     return this.misNoticias
   }
 
@@ -16,4 +16,5 @@ export class BlogService {
     this.misNoticias.push(noticia)
     return "Noticia insertada correctamente"
   }
+
 }

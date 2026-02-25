@@ -1,8 +1,10 @@
-import { Component,  } from '@angular/core';  
-import { Input, OnInit} from '@angular/core'; // Importante importar para Opcion 1 Input, OnInit sino no funciona
-import { input, signal } from '@angular/core'; // Importar para opcion 2
+import { Component  } from '@angular/core';  
+import { input } from '@angular/core'; 
 import { INoticia } from '../../interfaces/inoticia';
+import { BlogService } from '../../services/blog'; // Importamos el servicio
+import { inject } from '@angular/core'; // Importamos inject
 import { IndividualNew } from '../individual-new/individual-new';
+
 
 @Component({
   selector: 'app-news',
@@ -11,23 +13,16 @@ import { IndividualNew } from '../individual-new/individual-new';
   styleUrl: './news.css',
 })
 export class News {
-  // Opcion 1 para importar Input
-  //@Input() misNoticias: INoticia[] = []; 
+
+    // --- INYECCIÓN DE DEPENDENCIAS ---
+  private blogService = inject(BlogService);
 
 
-  // Option 2: con signal
-  misNoticias = input<INoticia[]>([]); 
+  // --- CAMBIO CLAVE ---
+  // Antes: misNoticias = input<INoticia[]>([]); 
+   misNoticias = this.blogService.getNoticias();
 
 
-
-
-  // ngOnInit(){
-  //   console.log('ngOnInit', this.misNoticias()); 
-  // }
-
-  // constructor(){
-  //   console.log(this.misNoticias()); // me sigue un array vacio
-  // }
 
 
 }
